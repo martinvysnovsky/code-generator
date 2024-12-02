@@ -1,0 +1,17 @@
+{
+  "name": "code-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "plop"
+  },
+  "bin": {
+    "code-generator": "./index.js",
+    "cg": "./index.js"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "plop": "^4.0.1"
+  }
+}
