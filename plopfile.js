@@ -1,7 +1,9 @@
-export default function (
+export default async function (
   /** @type {import('plop').NodePlopAPI} */
   plop,
 ) {
+  await plop.load("./generators/react");
+
   // controller generator
   plop.setGenerator("nest:controller", {
     description: "NestJS controller",
