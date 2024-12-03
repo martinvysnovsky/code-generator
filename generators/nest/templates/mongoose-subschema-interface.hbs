@@ -1,0 +1,6 @@
+import { Types } from 'mongoose';
+
+import { {{pascalCase name}} } from '../entities/{{kebabCase name}}.entity';
+
+export type {{pascalCase name}}Document = Types.Subdocument<Types.ObjectId> &
+  {{pascalCase name}};
