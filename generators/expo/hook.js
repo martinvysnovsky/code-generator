@@ -6,23 +6,17 @@ const hook = {
       name: "name",
       message: "Hook name:",
     },
-    {
-      type: "list",
-      name: "folder",
-      message: "Project src root:",
-      choices: [".", "src"],
-    },
   ],
   actions: [
     {
       type: "add",
-      path: "{{folder}}/hooks/{{camelCase name}}.ts",
-      templateFile: "./templates/hook.hbs",
+      path: "hooks/{{camelCase name}}.ts",
+      templateFile: "../react/templates/hook.hbs",
     },
     // TODO: add test file
     // {
     //   type: "add",
-    //   path: "src/hooks/{{camelCase name}}/{{camelCase name}}.test.ts",
+    //   path: "hooks/{{camelCase name}}/{{camelCase name}}.test.ts",
     //   templateFile: "./templates/test.hbs",
     // },
   ],

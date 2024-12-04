@@ -4,4 +4,6 @@ export default async function (
 ) {
   await plop.load("./generators/nest");
   await plop.load("./generators/react");
+  await plop.load("./generators/remix");
+  await plop.load("./generators/expo");
 }
