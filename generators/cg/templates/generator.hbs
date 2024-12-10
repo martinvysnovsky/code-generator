@@ -1,0 +1,19 @@
+const {{camelCase name}} = {
+  description: "{{description}}",
+  prompts: [
+    {
+      type: "input",
+      name: "name",
+      message: "{{sentenceCase name}} name:",
+    },
+  ],
+  actions: [
+    {
+      type: "add",
+      path: "src/{{kebabCase name}}.ts",
+      templateFile: "./templates/{{kebabCase name}}.hbs",
+    },
+  ],
+};
+
+export default {{camelCase name}};

@@ -1,4 +1,4 @@
-const hook = {
+const subschema = {
   description: "Mongoose nested schema",
   prompts: [
     {
@@ -21,4 +21,4 @@ const hook = {
   ],
 };
 
-export default hook;
+export default subschema;
