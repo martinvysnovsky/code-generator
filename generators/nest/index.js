@@ -1,9 +1,12 @@
 import mongooseSubschema from "./mongoose-subschema.js";
+import resolver from "./resolver.js";
 
 export default function (
   /** @type {import('plop').NodePlopAPI} */
   plop,
 ) {
+  plop.load("../../helpers", {}, { helpers: true });
+
   plop.setGenerator("nest:mongoose:subschema", mongooseSubschema);
 
   // controller generator
@@ -24,4 +27,5 @@ export default function (
       },
     ],
   });
+  plop.setGenerator("nest:resolver", resolver);
 }

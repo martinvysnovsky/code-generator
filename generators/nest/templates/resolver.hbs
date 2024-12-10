@@ -1,0 +1,46 @@
+import { UserInputError } from '@nestjs/apollo';
+import { UseGuards } from '@nestjs/common';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { CurrentUserType } from 'src/auth/interfaces/current-user.interface';
+import { ID } from 'src/graphql/interfaces/id.interface';
+import { {{pascalCase name}}Loader } from 'src/{{module}}/{{kebabCase name}}.loader';
+import { {{pascalCasePlural name}}Service } from 'src/{{module}}/{{kebabCase name}}.service';
+
+import { {{pascalCase name}}Document } from './interfaces/{{camelCase name}}-document.interface';
+
+@Resolver('{{pascalCase name}}')
+export class {{pascalCase name}}Resolver {
+  constructor(
+    private readonly {{camelCase name}}Loader: {{pascalCase name}}Loader,
+    private readonly {{camelCasePlural name}}Service: {{pascalCasePlural name}}Service
+  ) {}
+
+  @Query('{{camelCase name}}')
+  @UseGuards(JwtAuthGuard)
+  {{camelCase name}}(
+    @Args('id') id: ID,
+    @CurrentUser() currentUser: CurrentUserType,
+  ): Promise<{{pascalCase name}}Document | null> {
+    return this.{{camelCase name}}Loader.getOne(id);
+  }
+
+  @Mutation('update{{pascalCase name}}')
+  @UseGuards(JwtAuthGuard)
+  async update(
+    @Args('id') id: ID,
+    @Args('input') input: Update{{pascalCase name}}Input,
+    @CurrentUser() currentUser: CurrentUserType,
+  ): Promise<{{pascalCase name}}Document | null> {
+    const {{camelCase name}} = await this.{{camelCase name}}Loader.getOne(id);
+
+    if (!{{camelCase name}}) {
+      throw new UserInputError(`{{sentenceCase name}} not found`);
+    }
+
+    return this.{{camelCasePlural name}}Service.update({{camelCase name}}, input);
+  }
+}
+

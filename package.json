@@ -12,6 +12,8 @@
   },
   "preferGlobal": true,
   "dependencies": {
-    "plop": "^4.0.1"
+    "change-case": "^5.4.4",
+    "plop": "^4.0.1",
+    "pluralize": "^8.0.0"
   }
 }
