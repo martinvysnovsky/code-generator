@@ -1,0 +1,75 @@
+import {
+{{#includes features "loader"}}
+    json,
+    LoaderFunction,
+{{/includes}}
+{{#includes features "action"}}
+    redirect,
+    ActionFunction,
+{{/includes}}
+{{#includes features "error"}}
+    ErrorBoundaryComponent,
+{{/includes}}
+{{#includes features "links"}}
+    LinkDescriptor,
+    LinksFunction,
+{{/includes}}
+{{#includes features "meta"}}
+    HtmlMetaDescriptor,
+    MetaFunction,
+{{/includes}}
+} from "@remix-run/node"
+{{#includes features "catch"}}
+import {useCatch, useParams} from "@remix-run/react"
+{{/includes}}
+
+{{#includes features "links"}}
+export const links: LinksFunction = () => {
+    const links: LinkDescriptor[] = []
+    return links
+}
+
+{{/includes}}
+{{#includes features "links"}}
+export const meta: MetaFunction = () => {
+    const meta: HtmlMetaDescriptor = {}
+    return meta
+}
+
+{{/includes}}
+{{#includes features "loader"}}
+type LoaderData = {}
+
+export const loader: LoaderFunction = async ({request, params}) => {
+    const data: LoaderData = {}
+    return json<LoaderData>(data)
+}
+
+{{/includes}}
+{{#includes features "action"}}
+export const action: ActionFunction = async ({request, params}) => {
+    return redirect("/")
+}
+
+{{/includes}}
+export default function {{pascalCase name}}Route() {
+    return <h2>{{pascalCase name}}Route</h2>
+}
+
+{{#includes features "catch"}}
+export const CatchBoundary = () => {
+    const caught = useCatch()
+    const params = useParams()
+
+    return <p>Something went wrong.</p>
+}
+
+{{/includes}}
+{{#includes features "error"}}
+export const ErrorBoundary: ErrorBoundaryComponent = ({error}) => {
+    console.log(error)
+
+    const params = useParams()
+    return <p>Something went wrong.</p>
+}
+{{/includes}}
