@@ -1,5 +1,6 @@
 import mongooseSubschema from "./mongoose-subschema.js";
 import resolver from "./resolver.js";
+import resolverSpec from "./resolver-spec.js";
 
 export default function (
   /** @type {import('plop').NodePlopAPI} */
@@ -28,4 +29,5 @@ export default function (
     ],
   });
   plop.setGenerator("nest:resolver", resolver);
+  plop.setGenerator("nest:resolverSpec", resolverSpec);
 }

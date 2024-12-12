@@ -1,0 +1,45 @@
+import { TestBed } from '@automock/jest';
+import { fromPartial } from '@total-typescript/shoehorn';
+import { Types } from 'mongoose';
+
+import { CurrentUserType } from 'src/auth/interfaces/current-user.interface';
+
+import { {{pascalCase name}}Document } from './interfaces/{{kebabCase name}}-document.interface';
+import { {{pascalCasePlural name}}Resolver } from './{{kebabCasePlural name}}.resolver';
+import { {{pascalCasePlural name}}Service } from './{{kebabCasePlural name}}.service';
+
+describe('{{pascalCasePlural name}}Resolver', () => {
+  let resolver: {{pascalCasePlural name}}Resolver;
+  let {{camelCasePlural name}}Service: jest.Mocked<{{pascalCasePlural name}}Service>;
+
+  beforeEach(async () => {
+    const { unit, unitRef } = TestBed.create({{pascalCasePlural name}}Resolver).compile();
+
+    resolver = unit;
+    {{camelCasePlural name}}Service = unitRef.get({{pascalCasePlural name}}Service);
+  });
+
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
+    expect({{camelCasePlural name}}Service).toBeDefined();
+  });
+
+  describe('{{camelCase name}}', () => {
+    it('calls service', async () => {
+      const {{camelCase name}}: {{pascalCase name}}Document = fromPartial({ _id: new Types.ObjectId() });
+      const currentUser: CurrentUserType = fromPartial({
+        id: new Types.ObjectId(),
+      });
+
+      {{camelCasePlural name}}Service.findOne.mockResolvedValueOnce({{camelCase name}});
+
+      const result = await resolver.{{camelCase name}}({{camelCase name}}, currentUser);
+
+      expect(result).toBe({{camelCase name}});
+      expect({{camelCasePlural name}}Service.findOne).toHaveBeenCalledWith(
+        {{camelCase name}}._id,
+      );
+    });
+  });
+});
+
